@@ -192,8 +192,8 @@ class PostAd extends Component {
                         <input className="second-label form-select" type="number" value={this.state.price} onChange={(e) => this.setState({ price: e.currentTarget.value })} />
                     </div>
 
+                  <div className="submit"><input type="submit" value="Post" /></div>
 
-                    <div><input type="submit" className="postAd-button" value="Submit" /></div>
                 </form>
 
             </div>
