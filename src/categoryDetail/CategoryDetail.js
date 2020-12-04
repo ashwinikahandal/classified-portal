@@ -48,6 +48,7 @@ import './CategoryDetail.css';
 import icon_mail from '../core/assets/outlook.png';
 import icon_phone from '../core/assets/icon_phone.jpg';
 import icon_team from '../core/assets/teams.svg';
+import share_icon from '../core/assets/share.png';
 
 
 class CategoryDetail extends Component {
@@ -310,6 +311,9 @@ class CategoryDetail extends Component {
 
                                                                 ></img>
                                                             </a>
+                                                            
+                                                            <img className="contact-img contact-alt" src={share_icon} alt=""/>
+                                                           
 
                                                         </div>
 
