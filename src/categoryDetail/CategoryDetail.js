@@ -3,7 +3,7 @@ import { withRouter } from "react-router";
 import { Link } from 'react-router-dom';
 import firebase from '../core/firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarker } from '@fortawesome/free-solid-svg-icons'
+import { faMapMarker ,faHeart, faRupeeSign} from '@fortawesome/free-solid-svg-icons'
 import notFound from '../core/assets/noimage.jpg'
 import bike1 from '../core/categorytype/bike1.jpg'
 import bike2 from '../core/categorytype/bike2.jpg'
@@ -51,6 +51,7 @@ import icon_team from '../core/assets/teams.svg';
 import share_icon from '../core/assets/share.png';
 
 
+
 class CategoryDetail extends Component {
 
     constructor(props) {
@@ -65,7 +66,8 @@ class CategoryDetail extends Component {
         categoryType: {},
         subcategoryType: [],
         loading: true,
-        openTeams: false
+        openTeams: false,
+        isFav:false
     }
 
     getSrc = (i, subcatId) => {
@@ -117,6 +119,18 @@ class CategoryDetail extends Component {
             default:
                 return notFound;
         };
+    }
+
+    togglefav =() =>{
+        let toggle=false;
+        if(!this.state.isFav){
+            toggle=true
+        }
+
+        this.setState(
+            {
+                isFav:toggle
+            });
     }
 
     handleChangeChk = (id) => {
@@ -283,8 +297,10 @@ class CategoryDetail extends Component {
                                     <div className="category-items">
                                         <div className="category-itemtext">
                                             <div className="category-itemtitle">{item.title}
-                                                <Link to="/payment" className="category-itemAdtype">Buy</Link>
+                                            <Link to="/payment" className="category-itemAdtype">Buy</Link>
+                                            <span onClick={()=> this.togglefav()} className={this.state.isFav? 'category-favAdded' : 'category-fav'}><FontAwesomeIcon icon={faHeart} ></FontAwesomeIcon></span>
                                             </div>
+                                            <div className="category-price">Price - {item.price} <FontAwesomeIcon icon={faRupeeSign} /></div>
 
                                             <div className="category-itemlocation">
                                                 <span><FontAwesomeIcon icon={faMapMarker} /> {item.location}</span>
@@ -293,8 +309,8 @@ class CategoryDetail extends Component {
                                                         <span className="category-itemspan">contact owner </span>
                                                     )}
                                                     position="right center"
-                                                    closeOnDocumentClick
-                                                >
+                                                    closeOnDocumentClick>
+
                                                     <div className="contact-pop">
                                                         <div className="phone">
                                                             <img className="contact-img" src={icon_phone} alt=""></img>
