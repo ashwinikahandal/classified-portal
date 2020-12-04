@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 import './Home.css';
 import Category from '../category/Category';
-import PostAd from '../PostAd/PostAd';
+import PostAd from '../postAd/PostAd';
 import CategoryDetail from '../categoryDetail/CategoryDetail';
 import firebase from '../core/firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
