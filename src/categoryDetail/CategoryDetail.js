@@ -76,8 +76,39 @@ class CategoryDetail extends Component {
                 subcategoryType:subCategoryList,
                 filterCategoryList:addCategoryList
         });
+    }
 
-        
+    handleAdChangeChk =(AdType) =>{
+        let addCategoryList=Object.assign([], this.state.categoryList[0]);
+        let selectedCategoryList = this.state.filterCategoryList;
+        let selectFilterList=this.state.filterCategoryList.filter(x=> x.adType===AdType);
+        let count = addCategoryList.length;
+        for (var i = 0; i < count; i++) {
+            let listId=addCategoryList[i].listingId;
+            var memidx =selectedCategoryList.map(
+                function(mem) {
+                    if(mem.adType===AdType)
+                    return mem.listingId;
+                    else return 0;
+                }).indexOf(listId);
+            if (memidx !== -1) { // to remove from the filter list
+                selectedCategoryList.splice(memidx, 1);
+            }
+            else{
+              console.log(memidx);
+              let getcategoryList=addCategoryList[i].adType===AdType;
+              if(selectFilterList.length===0 && getcategoryList){ // to add in the filter list
+                selectedCategoryList = this.state.filterCategoryList;
+                selectedCategoryList.push(addCategoryList[i]);
+              }
+              
+            }
+        }
+        this.setState(
+        {
+            filterCategoryList:selectedCategoryList
+        });
+
     }
 
     filterCategoryList = (subCatId) =>{
@@ -145,13 +176,13 @@ class CategoryDetail extends Component {
                                     <div className="menu-title">
                                      Category Type
                                     </div>
-                                    <div>
+                                    <div className="category-menusub">
                                         {
                                         this.state.categoryType.subCategory.map((item,i) => {
                                           return(
-                                              <div key={i}>
+                                              <div className="category-menusubtext" key={i}>
                                                   <input type="checkbox" defaultChecked={item.subCatId} onClick={()=>this.handleChangeChk(item.subCatId)} />
-                                                  {item.subCatName}
+                                                  <span className="category-menutext">{item.subCatName}</span>
                                               </div>
                                           )
                                         })
@@ -159,6 +190,22 @@ class CategoryDetail extends Component {
                                    
                                     
                                     </div>
+                                    <hr className="category-menuhr"></hr>
+
+                                    <div className="menu-title">
+                                     Advertisement Type
+                                    </div>
+                                    <div className="category-menusub">
+                                        <div className="category-menusubtext">
+                                        <input type="checkbox" defaultChecked="Sell" onClick={()=>this.handleAdChangeChk("Sell")} />
+                                        <span className="category-menutext">Sell</span>
+                                        </div>
+                                        <div className="category-menusubtext">
+                                        <input type="checkbox" defaultChecked="Rent" onClick={()=>this.handleAdChangeChk("Rent")} />
+                                        <span className="category-menutext">Rent</span>
+                                        </div>
+                                    </div>
+                                    
                     </div>
                     </div>
                     <div className="category-items">
@@ -170,7 +217,10 @@ class CategoryDetail extends Component {
                              </div>
                             <div className="category-items">
                               <div className="category-itemtext">
-                                <div className="category-itemtitle">{item.title}</div>
+                                <div className="category-itemtitle">{item.title} 
+                                  <span className="category-itemAdtype">{item.adType}</span>
+                                </div>
+                                
                                 <div className="category-itemlocation">
                                     <span><FontAwesomeIcon icon={faMapMarker} /> {item.location}</span>
                                     <span className="category-itemspan">Contact - {item.contact}</span>
