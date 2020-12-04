@@ -139,7 +139,6 @@ class CategoryDetail extends Component {
         }
         return selectedCategoryList;
     }
-
     componentDidMount() {
       let categoryId =this.props.match.params.catId;
       let categoryType=this.props.categories.find(x => x.catId===categoryId);
@@ -151,7 +150,9 @@ class CategoryDetail extends Component {
               CategoryAds.push(items.adListing);
              
           });
-          console.log(CategoryAds);
+        CategoryAds[0].sort(function (a, b) {
+            return new Date(a.startDate).getTime() - new Date(b.startDate).getTime(); 
+        }).reverse();
        this.setState(
         {
             categoryList: CategoryAds,
