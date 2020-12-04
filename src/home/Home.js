@@ -10,7 +10,6 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 
 
-
 class Home extends Component {
 
 
