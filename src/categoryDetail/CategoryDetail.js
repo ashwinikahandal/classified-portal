@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router";
+import { Link } from 'react-router-dom';
 import firebase from '../core/firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarker } from '@fortawesome/free-solid-svg-icons'
@@ -281,7 +282,7 @@ class CategoryDetail extends Component {
                                     <div className="category-items">
                                         <div className="category-itemtext">
                                             <div className="category-itemtitle">{item.title}
-                                                <span className="category-itemAdtype">{item.adType}</span>
+                                                <Link to="/payment" className="category-itemAdtype">Buy</Link>
                                             </div>
 
                                             <div className="category-itemlocation">

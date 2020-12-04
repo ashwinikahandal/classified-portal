@@ -48,7 +48,7 @@ class Payment extends Component {
 												<div className="transaction">
 													<div className="tab-form-left user-form">
 														<h5>EXPIRATION</h5>
-															<ul>
+															<ul className="pay-val">
 																<li>
 																	<input type="number" className="text_box" value="6" min="1"/>
 																</li>
@@ -66,14 +66,7 @@ class Payment extends Component {
 												</div>
 												<input type="submit" value="SUBMIT"/>
 											</form>
-						<div className="single-bottom">
-													<ul className="pay-val">
-														<li>
-															<input type="checkbox" id="brand" value=""/>
-															<label for="brand"><span></span>By checking this box, I agree to the Terms &amp; Conditions &amp; Privacy Policy.</label>
-														</li>
-													</ul>
-											</div>
+						
 				    </div>
                     </div>
               </div>
